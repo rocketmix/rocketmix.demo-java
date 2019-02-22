@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: demo-java
+
+server:
+  port: 8084
+
+
+  
+
+
+
+    

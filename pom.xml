@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.github.rocketmix</groupId>
+	<artifactId>rocketmix-demo-java</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>RocketMiX services implementation Demo</name>
+	<description>Hello World service API demo to useful to start a new project</description>
+	<url>https://github.com/rocketmix/rocketmix.demo-java</url>
+	<packaging>war</packaging>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.2.RELEASE</version>
+	</parent>
+	<dependencies>
+		<!-- CUSTOM SPRINT BOOT MODULE (start) -->
+		<dependency>
+			<groupId>io.github.rocketmix</groupId>
+			<artifactId>rocketmix-spring-boot-starter</artifactId>
+			<version>1.0.18-SNAPSHOT</version>
+		</dependency>
+		<!-- CUSTOM SPRINT BOOT MODULE (end) -->
+		<!-- JDK 11 COMPATIBILITY MODULES (start) -->
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>javax.activation-api</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+		<!-- JDK 11 COMPATIBILITY MODULES (end) -->
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.gif</include>
+					<include>**/*.jpg</include>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<!-- ALLOW SERVLET 3 WITHOUT WEB.XML (start) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${project.build.finalName}</warName>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<recompressZippedFiles>false</recompressZippedFiles>
+					<archive>
+						<compress>false</compress>
+						<manifestFile />
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- ALLOW SERVLET 3 WITHOUT WEB.XML (end) -->
+			<!-- TRANSFORM WAR TO LINUX EXECUTABLE FILE (start) -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<addResources>true</addResources>
+					<executable>true</executable>
+					<layout>WAR</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- TRANSFORM WAR TO LINUX EXECUTABLE FILE (end) -->
+		</plugins>
+	</build>
+</project>
